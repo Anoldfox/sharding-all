@@ -1,0 +1,21 @@
+dataSources:
+  ds0: !!com.zaxxer.hikari.HikariDataSource
+    driverClassName: com.mysql.cj.jdbc.Driver
+    jdbcUrl: jdbc:mysql://localhost:3306/order1?serverTimezone=CTT&useUnicode=true&characterEncoding=utf-8&allowMultiQueries=true
+    username: root
+    password: yu19970501
+shardingRule:
+  tables:
+    t_user:
+      actualDataNodes: ds0.t_user$->{0..1}
+      tableStrategy:
+        inline:
+          shardingColumn: sex
+          algorithmExpression: t_user$->{sex % 2}
+  bindingTables:
+    - t_user
+  defaultKeyGenerator:
+    type: SNOWFLAKE
+    column: id
+props:
+  sql.show: true
