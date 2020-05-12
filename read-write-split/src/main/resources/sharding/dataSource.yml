@@ -1,0 +1,27 @@
+dataSources:
+  ds_master: !!com.zaxxer.hikari.HikariDataSource
+    driverClassName: com.mysql.cj.jdbc.Driver
+    jdbcUrl: jdbc:mysql://10.241.241.20:6606/spark?serverTimezone=CTT&useUnicode=true&characterEncoding=utf-8&allowMultiQueries=true
+    username: root
+    password: Yu20200416_
+  ds_slave0: !!com.zaxxer.hikari.HikariDataSource
+    driverClassName: com.mysql.cj.jdbc.Driver
+    jdbcUrl: jdbc:mysql://10.241.241.20:6607/spark?serverTimezone=CTT&useUnicode=true&characterEncoding=utf-8&allowMultiQueries=true
+    username: root
+    password: Yu20200416_
+  ds_slave1: !!com.zaxxer.hikari.HikariDataSource
+    driverClassName: com.mysql.cj.jdbc.Driver
+    jdbcUrl: jdbc:mysql://10.241.241.20:6608/spark?serverTimezone=CTT&useUnicode=true&characterEncoding=utf-8&allowMultiQueries=true
+    username: root
+    password: Yu20200416_
+masterSlaveRule:
+  name: ds_ms
+  masterDataSourceName: ds_master
+  slaveDataSourceNames:
+    - ds_slave0
+    - ds_slave1
+  #从库负载均衡算法类型，可选值：ROUND_ROBIN，RANDOM。若`loadBalanceAlgorithmClassName`存在则忽略该配置
+  loadBalanceAlgorithmType: ROUND_ROBIN
+
+props:
+  sql.show: true

@@ -1,0 +1,66 @@
+version: '3.3'
+services:
+  mysql-master:
+    image: mysql/mysql-server:5.7
+    container_name: mysql_master
+    ports:
+      - 6606:3306
+    volumes:
+      - /volume/mysql-master:/var/lib/mysql
+      - /volume/conf/mysql-ms/mysqld-master.cnf:/etc/my.cnf
+    command:
+      - "--user=root"
+    environment:
+      MYSQL_ROOT_PASSWORD: Yu20200416_
+      MYSQL_DATABASE: spark
+      MYSQL_USER: admin
+      MYSQL_PASSWORD: Yu20200416_
+    restart: unless-stopped
+    networks:
+      mysql-ms-network:
+        ipv4_address: 172.25.0.101
+
+  mysql-slave1:
+    image: mysql/mysql-server:5.7
+    container_name: mysql_slave1
+    ports:
+      - 6607:3306
+    command:
+      - "--user=root"
+    volumes:
+      - /volume/mysql-slave1:/var/lib/mysql
+      - /volume/conf/mysql-ms/mysqld-slave1.cnf:/etc/my.cnf
+    environment:
+      MYSQL_ROOT_PASSWORD: Yu20200416_
+      MYSQL_DATABASE: spark
+      MYSQL_USER: admin
+    restart: unless-stopped
+    networks:
+      mysql-ms-network:
+        ipv4_address: 172.25.0.102
+
+  mysql-slave2:
+    image: mysql/mysql-server:5.7
+    container_name: mysql_slave2
+    ports:
+      - 6608:3306
+    command:
+      - "--user=root"
+    volumes:
+      - /volume/mysql-slave2:/var/lib/mysql
+      - /volume/conf/mysql-ms/mysqld-slave2.cnf:/etc/my.cnf
+    environment:
+      MYSQL_ROOT_PASSWORD: Yu20200416_
+      MYSQL_DATABASE: spark
+      MYSQL_USER: admin
+    restart: unless-stopped
+    networks:
+      mysql-ms-network:
+        ipv4_address: 172.25.0.103
+
+networks:
+  mysql-ms-network:
+    driver: bridge
+    ipam:
+      config:
+        - subnet: 172.25.0.0/24
