@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ProjectModuleManager">
+    <modules>
+      <module fileurl="file://$PROJECT_DIR$/sharding-all.iml" filepath="$PROJECT_DIR$/sharding-all.iml" />
+      <module fileurl="file://$PROJECT_DIR$/sub-db-table/sub-db-table.iml" filepath="$PROJECT_DIR$/sub-db-table/sub-db-table.iml" />
+      <module fileurl="file://$PROJECT_DIR$/sub-table/sub-table.iml" filepath="$PROJECT_DIR$/sub-table/sub-table.iml" />
+    </modules>
+  </component>
+</project>

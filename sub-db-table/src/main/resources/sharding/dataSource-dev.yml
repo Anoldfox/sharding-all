@@ -1,0 +1,32 @@
+dataSources:
+  ds0: !!com.zaxxer.hikari.HikariDataSource
+    driverClassName: com.mysql.cj.jdbc.Driver
+    jdbcUrl: jdbc:mysql://localhost:3306/order1?serverTimezone=CTT&useUnicode=true&characterEncoding=utf-8&allowMultiQueries=true
+    username: root
+    password: yu19970501
+  ds1: !!com.zaxxer.hikari.HikariDataSource
+    driverClassName: com.mysql.cj.jdbc.Driver
+    jdbcUrl: jdbc:mysql://localhost:3306/order2?serverTimezone=CTT&useUnicode=true&characterEncoding=utf-8&allowMultiQueries=true
+    username: root
+    password: yu19970501
+shardingRule:
+  tables:
+    t_user:
+      actualDataNodes: ds${0..1}.t_user${0..1}
+      databaseStrategy:
+        inline:
+          shardingColumn: sex
+          algorithmExpression: ds${sex % 2}
+      tableStrategy:
+        standard:
+          shardingColumn: phone
+          preciseAlgorithmClassName: org.ywb.subdbtable.sharding.UserPreciseShardingAlgorithm
+      keyGenerator:
+        type: SNOWFLAKE
+        column: id
+  bindingTables:
+    - t_user
+  defaultDataSourceName: ds0
+
+props:
+  sql.show: true
