@@ -3,6 +3,7 @@
   <component name="Encoding">
     <file url="file://$PROJECT_DIR$/read-write-split/src/main/java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/sub-db-table/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/sub-read-write-split/src/main/java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/sub-table/src/main/java" charset="UTF-8" />
   </component>
 </project>

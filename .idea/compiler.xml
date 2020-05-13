@@ -7,6 +7,7 @@
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
         <module name="sub-db-table" />
+        <module name="sub-read-write-split" />
         <module name="sub-table" />
         <module name="read-write-split" />
       </profile>
@@ -15,6 +16,7 @@
       <module name="read-write-split" target="1.8" />
       <module name="sharding-all" target="1.8" />
       <module name="sub-db-table" target="1.8" />
+      <module name="sub-read-write-split" target="1.8" />
       <module name="sub-table" target="1.8" />
     </bytecodeTargetLevel>
   </component>
@@ -22,6 +24,7 @@
     <option name="ADDITIONAL_OPTIONS_OVERRIDE">
       <module name="read-write-split" options="-parameters" />
       <module name="sub-db-table" options="-parameters" />
+      <module name="sub-read-write-split" options="-parameters" />
       <module name="sub-table" options="-parameters" />
     </option>
   </component>

@@ -6,6 +6,7 @@
         <option value="$PROJECT_DIR$/pom.xml" />
         <option value="$PROJECT_DIR$/sub-db-table/pom.xml" />
         <option value="$PROJECT_DIR$/read-write-split/pom.xml" />
+        <option value="$PROJECT_DIR$/sub-read-write-split/pom.xml" />
       </list>
     </option>
   </component>

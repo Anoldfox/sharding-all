@@ -1,0 +1,38 @@
+dataSources:
+  ds_master: !!com.zaxxer.hikari.HikariDataSource
+    driverClassName: com.mysql.cj.jdbc.Driver
+    jdbcUrl: jdbc:mysql://10.241.241.20:6606/spark?serverTimezone=CTT&useUnicode=true&characterEncoding=utf-8&allowMultiQueries=true
+    username: root
+    password:
+  ds_slave0: !!com.zaxxer.hikari.HikariDataSource
+    driverClassName: com.mysql.cj.jdbc.Driver
+    jdbcUrl: jdbc:mysql://10.241.241.20:6607/spark?serverTimezone=CTT&useUnicode=true&characterEncoding=utf-8&allowMultiQueries=true
+    username: root
+    password:
+  ds_slave1: !!com.zaxxer.hikari.HikariDataSource
+    driverClassName: com.mysql.cj.jdbc.Driver
+    jdbcUrl: jdbc:mysql://10.241.241.20:6608/spark?serverTimezone=CTT&useUnicode=true&characterEncoding=utf-8&allowMultiQueries=true
+    username: root
+    password:
+shardingRule:
+  masterSlaveRules:
+    ms_ds0:
+      masterDataSourceName: ds_master
+      slaveDataSourceNames:
+        - ds_slave0
+        - ds_slave1
+      loadBalanceAlgorithmType: ROUND_ROBIN
+  tables:
+    t_user:
+      actualDataNodes: ms_ds0.t_user${0..1}
+      tableStrategy:
+        inline:
+          shardingColumn: sex
+          algorithmExpression: t_user${sex % 2}
+      keyGenerator:
+        type: SNOWFLAKE
+        column: id
+  bindingTables:
+    - t_user
+props:
+  sql.show: true
